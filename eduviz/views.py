@@ -5,6 +5,9 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'index.html')
 
+def index(request):
+    return render(request, 'contato.html')
+
 def pagina_brasil(request):
     return HttpResponse('Brasil')
 
