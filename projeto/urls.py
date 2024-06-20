@@ -6,6 +6,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import settings
 from django.views.generic import RedirectView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', views.index),
@@ -15,4 +16,7 @@ urlpatterns = [
     path('historico/', views.pagina_historico),
     path('login/', views.pagina_login),
     path('perfil/', views.pagina_perfil),
+    path('teste/', views.teste),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

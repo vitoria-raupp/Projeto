@@ -9,7 +9,7 @@ def pagina_brasil(request):
     return HttpResponse('Brasil')
 
 def pagina_compare(request):
-    return HttpResponse('Compare')
+    return render(request, 'compare.html')
 
 def pagina_historico(request):
     return HttpResponse('Historico')
@@ -19,3 +19,5 @@ def pagina_login(request):
 
 def pagina_perfil(request):
     return render(request, 'login.html')
+def teste(request):
+    return render(request, 'teste.html')
