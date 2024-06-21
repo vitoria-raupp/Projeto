@@ -3,21 +3,23 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 def pagina_brasil(request):
-    return HttpResponse('Brasil')
+    return render(request, 'brasil.html')
 
 def pagina_compare(request):
-    return render(request, 'compare.html')
+    return render(request, 'charts.html')
 
 def pagina_historico(request):
-    return HttpResponse('Historico')
+    return render(request, 'Historico')
 
 def pagina_login(request):
-    return HttpResponse('Login')
+    return render(request,'Login.html')
 
 def pagina_perfil(request):
-    return render(request, 'login.html')
+    return render(request, '.html')
 def teste(request):
     return render(request, 'teste.html')
+def termos(request):
+    return render(request, 'termos.html')

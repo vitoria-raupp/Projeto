@@ -9,14 +9,16 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index', views.index),
+    path('index', views.index, name='index'),
     path('', views.index),
     path('brasil/', views.pagina_brasil),
     path('compare/', views.pagina_compare),
     path('historico/', views.pagina_historico),
-    path('login/', views.pagina_login),
+    path('login/', views.pagina_login, name='login.html'),
     path('perfil/', views.pagina_perfil),
     path('teste/', views.teste),
+    path('termos/', views.termos, name='termos.html'),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
