@@ -14,7 +14,58 @@ PARAMETERS = [
 ]
 
 class DataForm(forms.Form):
-    start_year = forms.ChoiceField(choices=YEARS, label='Ano Inicial')
-    end_year = forms.ChoiceField(choices=YEARS, label='Ano Final')
-    states = forms.MultipleChoiceField(choices=STATES, widget=forms.CheckboxSelectMultiple, label='Estados')
-    parameter = forms.ChoiceField(choices=PARAMETERS, label='Parâmetro')
+    start_year = forms.ChoiceField(
+        choices=YEARS,
+        label='Ano Inicial',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    end_year = forms.ChoiceField(
+        choices=YEARS,
+        label='Ano Final',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    states = forms.MultipleChoiceField(
+        choices=STATES,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        label='Estados'
+    )
+    parameter = forms.ChoiceField(
+        choices=PARAMETERS,
+        label='Parâmetro',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
+class DataFormBarras(forms.Form):
+    year = forms.ChoiceField(
+        choices=YEARS,
+        label='Ano',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    states = forms.MultipleChoiceField(
+        choices=STATES,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        label='Estados'
+    )
+    parameters = forms.MultipleChoiceField(
+        choices=PARAMETERS,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        label='Parâmetros'
+    )
+
+    # Em forms.py
+class DataFormBarras(forms.Form):
+    year = forms.ChoiceField(
+        choices=YEARS,
+        label='Ano',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    states = forms.MultipleChoiceField(
+        choices=STATES,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        label='Estados'
+    )
+    parameters = forms.MultipleChoiceField(
+        choices=PARAMETERS,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        label='Parâmetros'
+    )

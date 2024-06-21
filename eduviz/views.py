@@ -5,27 +5,28 @@ import plotly.express as px
 import pandas as pd
 from django.shortcuts import render
 from .forms import DataForm
+from .forms import DataFormBarras
 
 api_url = 'https://mutt-correct-mongoose.ngrok-free.app/data'
 
 def get_data_from_api(parameter, estados, anos):
     data = []
-    params = {
-        'parameter': parameter,
-        'estado': estados,
-        'ano': anos
-    }
-    response = requests.get(api_url, params=params)
-    if response.status_code == 200:
-        api_data = response.json()
-        for ano, estados_data in api_data[parameter].items():
-            for estado_data in estados_data:
-                estado = estado_data['estado']
-                valor = estado_data['count_not_equals_zero']
-                data.append([estado, int(ano), parameter, valor])
-    else:
-        print(f"Erro ao obter dados da API: {response.status_code}")
-        return None
+    for estado in estados:
+        params = {
+            'parameter': parameter,
+            'estado': estado,
+            'ano': anos
+        }
+        response = requests.get(api_url, params=params)
+        if response.status_code == 200:
+            api_data = response.json()
+            for ano, estados_data in api_data[parameter].items():
+                for estado_data in estados_data:
+                    estado = estado_data['estado']
+                    valor = estado_data['count_not_equals_zero']
+                    data.append([estado, int(ano), parameter, valor])
+        else:
+            print(f"Erro ao obter dados da API: {response.status_code}")
     return data
 
 def line_chart(request):
@@ -42,6 +43,7 @@ def line_chart(request):
 
             if data:
                 df = pd.DataFrame(data, columns=['Estado', 'Ano', 'Parâmetro', 'Valor'])
+                df['Valor'] = pd.to_numeric(df['Valor'], errors='coerce')
                 fig = px.line(df, x='Ano', y='Valor', color='Estado', title=f'Dados de {parameter}')
                 graph_html = fig.to_html(full_html=False)
             else:
@@ -52,6 +54,30 @@ def line_chart(request):
         form = DataForm()
 
     return render(request, 'line_chart.html', {'form': form})
+
+def grafico_barras(request):
+    form = DataFormBarras(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            year = form.cleaned_data['year']
+            states = form.cleaned_data['states']
+            parameters = form.cleaned_data['parameters']
+
+            data = []
+            for parameter in parameters:
+                data += get_data_from_api(parameter, states, year)
+
+            if data:
+                df = pd.DataFrame(data, columns=['Estado', 'Parâmetro', 'Valor'])
+                fig = px.bar(df, x='Estado', y='Valor', color='Parâmetro', barmode='group', title=f'Dados de {", ".join(parameters)} - Ano {year}')
+                graph_html = fig.to_html(full_html=False)
+            else:
+                graph_html = '<p>Erro ao obter dados da API.</p>'
+
+            return render(request, 'grafico_barras.html', {'form': form, 'graph_html': graph_html})
+
+    return render(request, 'grafico_barras.html', {'form': form})
 
 
 # Create your views here.
