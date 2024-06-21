@@ -6,23 +6,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização de Dados</title>
+    <title>Gráfico de Barras</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Visualização de Dados</h1>
+        <h1 class="mt-5">Gráfico de Barras</h1>
         <form method="post">
             {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    {{ form.start_year.label_tag }}
-                    {{ form.start_year }}
-                </div>
-                <div class="form-group col-md-4">
-                    {{ form.end_year.label_tag }}
-                    {{ form.end_year }}
+                    {{ form.year.label_tag }}
+                    {{ form.year }}
                 </div>
                 <div class="form-group col-md-4">
                     {{ form.parameter.label_tag }}
@@ -37,7 +33,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <button type="submit" class="btn btn-primary">Gerar Visualização</button>
+            <button type="submit" class="btn btn-primary">Gerar Gráfico</button>
         </form>
         <div id="graph" class="mt-5">
             {% if graph_html %}

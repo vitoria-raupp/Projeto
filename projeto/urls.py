@@ -18,7 +18,6 @@ urlpatterns = [
     path('teste/', views.teste),
     path('termos/', views.termos, name='termos.html'),
     path('charts/', views.pagina_charts, name='charts.html'),
-    path('line_chart/', views.line_chart, name='line_chart'),
     path('', include('eduviz.urls')),
 ]
 

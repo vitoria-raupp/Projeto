@@ -9,8 +9,19 @@ STATES = [
     ('RO', 'Rondônia'), ('RR', 'Roraima'), ('SC', 'Santa Catarina'), ('SP', 'São Paulo'), ('SE', 'Sergipe'), ('TO', 'Tocantins')
 ]
 PARAMETERS = [
+    ('in_energia_inexistente', 'Energia Inexistente'),
+    ('in_laboratorio_informatica', 'Laboratório de Informática'),
     ('in_computador', 'Computador'),
-    # Adicione outros parâmetros aqui se necessário
+    ('in_equip_multimidia', 'Equipamento Multimídia'),
+    ('in_desktop_aluno', 'Desktop para Aluno'),
+    ('in_comp_portatil_aluno', 'Computador Portátil para Aluno'),
+    ('in_tablet_aluno', 'Tablet para Aluno'),
+    ('in_internet', 'Internet'),
+    ('in_internet_alunos', 'Internet para Alunos'),
+    ('in_internet_administrativo', 'Internet Administrativa'),
+    ('in_internet_aprendizagem', 'Internet para Aprendizagem'),
+    ('in_acesso_internet_computador', 'Acesso à Internet via Computador'),
+    ('in_aces_internet_disp_pessoais', 'Acesso à Internet via Dispositivos Pessoais')
 ]
 
 class DataForm(forms.Form):
@@ -35,7 +46,7 @@ class DataForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-control'})
     )
 
-class DataFormBarras(forms.Form):
+class BarChartForm(forms.Form):
     year = forms.ChoiceField(
         choices=YEARS,
         label='Ano',
@@ -46,14 +57,13 @@ class DataFormBarras(forms.Form):
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
         label='Estados'
     )
-    parameters = forms.MultipleChoiceField(
+    parameter = forms.ChoiceField(
         choices=PARAMETERS,
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
-        label='Parâmetros'
+        label='Parâmetro',
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
 
-    # Em forms.py
-class DataFormBarras(forms.Form):
+class ScatterPlotForm(forms.Form):
     year = forms.ChoiceField(
         choices=YEARS,
         label='Ano',
@@ -64,8 +74,25 @@ class DataFormBarras(forms.Form):
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
         label='Estados'
     )
-    parameters = forms.MultipleChoiceField(
+    parameter_x = forms.ChoiceField(
         choices=PARAMETERS,
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
-        label='Parâmetros'
+        label='Parâmetro X',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    parameter_y = forms.ChoiceField(
+        choices=PARAMETERS,
+        label='Parâmetro Y',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
+class ChoroplethMapForm(forms.Form):
+    year = forms.ChoiceField(
+        choices=YEARS,
+        label='Ano',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    parameter = forms.ChoiceField(
+        choices=PARAMETERS,
+        label='Parâmetro',
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
