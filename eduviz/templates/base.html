@@ -47,7 +47,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="charts.html">Dados Brasil</a>
+                            <a class="nav-link" href={% static 'charts.html' %} >Dados Brasil</a>
                             <div class="sb-sidenav-menu-heading">Sobre Nós</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-info-circle"></i></div>
@@ -56,8 +56,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href=".html">O Censo</a>
-                                    <a class="nav-link" href=".html">Quem somos</a>
+                                    <a class="nav-link" href={% static 'censo.html' %}>O Censo</a>
+                                    <a class="nav-link" href={% static 'quemsomos.html' %}>Quem somos</a>
                                 </nav>
                             </div>
                         </div>

@@ -8,7 +8,7 @@ def index(request):
 def pagina_brasil(request):
     return render(request, 'brasil.html')
 
-def pagina_compare(request):
+def pagina_charts(request):
     return render(request, 'charts.html')
 
 def pagina_historico(request):
