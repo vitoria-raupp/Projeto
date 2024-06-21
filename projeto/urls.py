@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from eduviz import views
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -18,7 +18,8 @@ urlpatterns = [
     path('teste/', views.teste),
     path('termos/', views.termos, name='termos.html'),
     path('charts/', views.pagina_charts, name='charts.html'),
-
+    path('line_chart/', views.line_chart, name='line_chart'),
+    path('', include('eduviz.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
