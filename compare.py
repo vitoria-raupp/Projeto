@@ -109,6 +109,6 @@ else:
         ]
     )
 
-    html_path = 'eduviz/templates/teste.html'
+    html_path = 'eduviz/templates/teste2.html'
     fig.write_html(html_path)
     print(f"Gráfico salvo em {html_path}")

@@ -5,8 +5,8 @@ import pandas as pd
 # Configurações da API
 api_url = 'https://mutt-correct-mongoose.ngrok-free.app/data'  # Atualize com o URL correto da sua API
 parameters = ['in_computador']  # Parâmetros que deseja consultar
-estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']
-anos = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP','SE','TO']
+anos = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
 
 # Função para obter dados da API
 def get_data_from_api(parameters, estados, anos):
@@ -36,7 +36,7 @@ if api_data is None:
     print("Erro ao obter dados da API.")
 else:
     # Criar DataFrame com os dados obtidos
-    df = pd.DataFrame(api_data, columns=['Estado', 'Ano', 'Parâmetro', 'Valor'])
+    df = pd.DataFrame(api_data, columns=['Estado', 'Ano', 'Parâmetro','Valor'])
 
     # Criar o gráfico de linha interativo com dropdown
     fig = px.line(df, x='Ano', y='Valor', color='Estado', title='Evolução dos Dados por Estado (2014-2021)',
@@ -52,16 +52,6 @@ else:
             args=[{'visible': visible}]
         ))
 
-    # Adicionar dropdown para selecionar o valor
-    valores_unicos = df['Valor'].unique()
-    valor_buttons = []
-    for valor in valores_unicos:
-        visible = df['Valor'] == valor
-        valor_buttons.append(dict(
-            label=str(valor),
-            method='update',
-            args=[{'visible': visible}]
-        ))
 
     fig.update_layout(
         updatemenus=[
@@ -74,22 +64,11 @@ else:
                 'y': 1.15,
                 'yanchor': 'top',
                 'pad': {'r': 10, 't': 10}
-            },
-            {
-                'buttons': valor_buttons,
-                'direction': 'down',
-                'showactive': True,
-                'x': 0.37,
-                'xanchor': 'left',
-                'y': 1.15,
-                'yanchor': 'top',
-                'pad': {'r': 10, 't': 10}
             }
         ]
     )
 
-    html_path = 'eduviz/templates/teste.html'
+    print(df)
+    html_path = 'C:/Users/vitor/PycharmProjects/projeto/eduviz/templates/teste.html'
     fig.write_html(html_path)
     print(f"Gráfico salvo em {html_path}")
-
-    html_path
