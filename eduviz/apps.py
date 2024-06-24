@@ -5,5 +5,5 @@ class EduvizConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'eduviz'
 
-class projetoConfig(AppConfig):
-    name = 'Projeto'
+class ProjetoConfig(AppConfig):
+    name = 'projeto'

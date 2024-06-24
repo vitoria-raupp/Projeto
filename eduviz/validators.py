@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 import re
+
 def validate_senha(senha):
     if len(senha) < 8:
         raise ValidationError('A senha deve ter pelo menos 8 caracteres.')

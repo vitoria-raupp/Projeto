@@ -4,8 +4,8 @@ from django.contrib import admin
 
 
 urlpatterns = [
-     path('', index),
-     path('contato', contato),
-     path('accounts/', include('django.contrib.auth.urls')),
-     path('', include('Projeto.urls')),
+    path('', index),
+    path('contato', contato),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('projeto.urls')),
 ]
